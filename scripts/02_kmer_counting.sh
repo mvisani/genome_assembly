@@ -21,3 +21,5 @@ jellyfish count \
 jellyfish histo \
 -t 4 /data/users/mvisani/genome_assembly/read_QC/kmer_counting/Illumina.jf \
 > /data/users/mvisani/genome_assembly/read_QC/kmer_counting/Illumina.histo
+
+
