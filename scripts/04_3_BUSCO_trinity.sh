@@ -12,10 +12,10 @@
 
 
 mkdir /data/users/mvisani/genome_assembly/evaluation/trinity
-cd /data/users/mvisani/genome_assembly/evaluation/trinity
+cd /data/users/mvisani/genome_assembly/evaluation/busco/trinity
 
 WORKDIR=/data/users/mvisani/genome_assembly/
-OUTDIR=/data/users/mvisani/genome_assembly/evaluation/trinity
+OUTDIR=/data/users/mvisani/genome_assembly/evaluation/busco/trinity
 INPUT=/data/users/mvisani/genome_assembly/assembly/rna_trinity/Trinity.fasta
 
 echo "busco \

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=48G
+#SBATCH --cpus-per-task=16
+#SBATCH --mem-per-cpu=4G
 #SBATCH --time=06:00:00
 #SBATCH --job-name=eval_flye
 #SBATCH --mail-user=marco.visani@students.unibe.ch
@@ -10,18 +10,18 @@
 #SBATCH --error=/data/users/mvisani/genome_assembly/scripts/error_%j.e
 #SBATCH --partition=pall
 
-mkdir /data/users/mvisani/genome_assembly/evaluation/flye
-cd /data/users/mvisani/genome_assembly/evaluation/canu
+cd /data/users/mvisani/genome_assembly/evaluation/busco/flye
 
 WORKDIR=/data/users/mvisani/genome_assembly/
-OUTDIR=/data/users/mvisani/genome_assembly/evaluation/flye
+OUTDIR=/data/users/mvisani/genome_assembly/evaluation/busco/flye
+INPUT=/data/users/mvisani/genome_assembly/polishing/flye/pilon.fasta
 
 echo "busco \
-    --in TODO \
+    --in $INPUT \
     --mode genome \
-    --cpu 4 \
+    --cpu 16 \
     --lineage brassicales_odb10 \
-    --out $OUTDIR " > eval_flye.sh
+    --out flye " > eval_flye.sh
 
 singularity exec \
     --bind $WORKDIR \
