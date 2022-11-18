@@ -13,14 +13,14 @@
 module add UHTS/Analysis/mummer/4.0.0beta1
 
 #mkdir /data/users/mvisani/genome_assembly/comparison
-mkdir /data/users/mvisani/genome_assembly/comparison/canu
-cd /data/users/mvisani/genome_assembly/comparison/canu
+mkdir /data/users/mvisani/genome_assembly/comparison/fat/canu
+cd /data/users/mvisani/genome_assembly/comparison/fat/canu
 
 REFFILE=/data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
 CANU=/data/users/mvisani/genome_assembly/polishing/canu/canu_pilon.fasta
 
 nucmer \
-    --prefix canu \
+    --prefix canu_fat \
     --breaklen 1000 \
     --mincluster 1000 \
     $REFFILE \
@@ -33,7 +33,8 @@ mummerplot \
     -t png \
     --large \
     --layout \
-    --prefix canu \
-    canu.delta
+    --prefix canu_fat \
+    --fat \
+    canu_fat.delta
 
 

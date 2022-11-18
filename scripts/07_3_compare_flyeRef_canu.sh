@@ -13,14 +13,14 @@
 module add UHTS/Analysis/mummer/4.0.0beta1
 
 #mkdir /data/users/mvisani/genome_assembly/comparison
-mkdir /data/users/mvisani/genome_assembly/comparison/canu_flyeRef
-cd /data/users/mvisani/genome_assembly/comparison/canu_flyeRef
+mkdir /data/users/mvisani/genome_assembly/comparison/fat/canu_flyeRef
+cd /data/users/mvisani/genome_assembly/comparison/fat/canu_flyeRef
 
 REFFILE=/data/users/mvisani/genome_assembly/polishing/flye/flye_pilon.fasta
 CANU=/data/users/mvisani/genome_assembly/polishing/canu/canu_pilon.fasta
 
 nucmer \
-    --prefix canu_flyeRef \
+    --prefix canu_flyeRef_fat \
     --breaklen 1000 \
     --mincluster 1000 \
     $REFFILE \
@@ -33,7 +33,8 @@ mummerplot \
     -t png \
     --large \
     --layout \
-    --prefix canu_flyeRef \
-    canu_flyeRef.delta
+    --prefix canu_flyeRef_fat \
+    --fat \
+    canu_flyeRef_fat.delta
 
 

@@ -12,15 +12,15 @@
 
 module add UHTS/Analysis/mummer/4.0.0beta1
 
-mkdir /data/users/mvisani/genome_assembly/comparison
-mkdir /data/users/mvisani/genome_assembly/comparison/flye
-cd /data/users/mvisani/genome_assembly/comparison/flye
+mkdir /data/users/mvisani/genome_assembly/comparison/fat
+mkdir /data/users/mvisani/genome_assembly/comparison/fat/flye
+cd /data/users/mvisani/genome_assembly/comparison/fat/flye
 
 REFFILE=/data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
 FLYE=/data/users/mvisani/genome_assembly/polishing/flye/flye_pilon.fasta
 
 nucmer \
-    --prefix flye \
+    --prefix flye_fat \
     --breaklen 1000 \
     --mincluster 1000 \
     $REFFILE \
@@ -33,7 +33,8 @@ mummerplot \
     -t png \
     --large \
     --layout \
-    --prefix flye \
-    flye.delta
+    --prefix flye_fat \
+    --fat \
+    flye_fat.delta
 
 
