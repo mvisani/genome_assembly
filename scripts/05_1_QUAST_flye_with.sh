@@ -26,5 +26,6 @@ quast.py \
     --eukaryote \
     --est-ref-size 135000000 \
     --no-sv \
-    --labels flye_ref
+    --labels flye_ref \
+    --large
 
