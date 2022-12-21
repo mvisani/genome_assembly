@@ -17,15 +17,16 @@ OUTDIR=/data/users/mvisani/genome_assembly/evaluation/quast/with_reference
 INPUT_flye=/data/users/mvisani/genome_assembly/polishing/flye/flye_pilon.fasta
 INPUT_canu=/data/users/mvisani/genome_assembly/polishing/canu/canu_pilon.fasta
 GENECOOR=/data/courses/assembly-annotation-course/references/TAIR10_GFF3_genes.gff
+REFDIR=/data/courses/assembly-annotation-course/references
 
-quast.py \
-    $INPUT_flye $INPUT_canu \
-    --output-dir $OUTDIR \
-    -R $REFERENCE \
-    -G $GENECOOR \
-    --threads $SLURM_CPUS_PER_TASK \
-    --eukaryote \
-    --est-ref-size 130000000 \
-    --labels "flye with reference, canu with reference" \
-    --no-sv
+PROJDIR=/data/users/mvisani/
+cd $OUTDIR
+rm -rf $OUTDIR/*
+
+#run quast with ref genome
+singularity exec \
+--bind $PROJDIR,$REFDIR \
+/data/courses/assembly-annotation-course/containers/quast_5.1.0rc1.sif \
+quast.py $INPUT_flye $INPUT_canu \
+-r $REFERENCE -g $GENECOOR --eukaryote --labels flye,canu --large --threads $SLURM_CPUS_PER_TASK -o $OUTDIR
 

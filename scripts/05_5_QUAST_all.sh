@@ -15,13 +15,16 @@ module add UHTS/Quality_control/quast/4.6.0;
 OUTDIR=/data/users/mvisani/genome_assembly/evaluation/quast/no_reference/
 INPUT_flye=/data/users/mvisani/genome_assembly/polishing/flye/flye_pilon.fasta
 INPUT_canu=/data/users/mvisani/genome_assembly/polishing/canu/canu_pilon.fasta
+PROJDIR=/data/users/mvisani/genome_assembly/
 
-quast.py \
-    $INPUT_flye $INPUT_canu
-    -o $OUTDIR \
-    --threads $SLURM_CPUS_PER_TASK \
-    --eukaryote \
-    --est-ref-size 130000000 \ 
-    --labels flye, canu \
+cd $OUTDIR
+rm -rf $OUTDIR/*
+
+singularity exec \
+--bind $PROJDIR \
+/data/courses/assembly-annotation-course/containers/quast_5.1.0rc1.sif \
+quast.py $INPUT_flye $INPUT_canu \
+--eukaryote --est-ref-size 130000000 --labels flye,canu --large --threads $SLURM_CPUS_PER_TASK -o $OUTDIR
+
     
 

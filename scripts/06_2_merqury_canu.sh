@@ -8,7 +8,7 @@
 #SBATCH --mail-type=fail,end
 #SBATCH --output=/data/users/mvisani/genome_assembly/scripts/merqury_canu_%j.o
 #SBATCH --error=/data/users/mvisani/genome_assembly/scripts/merqury_canu_%j.e
-#SBATCH --partition=pcourseassembly
+#SBATCH --partition=pall
 
 module load UHTS/Assembler/canu/2.1.1;
 
@@ -17,11 +17,13 @@ PROJDIR=/data/users/mvisani/genome_assembly/
 READSDIR=/data/courses/assembly-annotation-course/raw_data/
 
 #create output directory
-mkdir /data/users/mvisani/genome_assembly/evaluation/merqury/canu
-OUTDIR=/data/users/mvisani/genome_assembly/evaluation/merqury/canu
+#mkdir /data/users/mvisani/genome_assembly/evaluation/merqury/canu
+#OUTDIR=/data/users/mvisani/genome_assembly/evaluation/merqury/canu
+mkdir /data/users/mvisani/genome_assembly/evaluation/merqury/canu_unpolished
+OUTDIR=/data/users/mvisani/genome_assembly/evaluation/merqury/canu_unpolished
 
 #directory for fasta files
-CANU=/data/users/mvisani/genome_assembly/polishing/canu/canu_pilon.fasta
+CANU=/data/users/mvisani/genome_assembly/assembly/pacbio_canu/pacbio_canu.contigs.fasta
 
 #illumina reads
 READ1=/data/courses/assembly-annotation-course/raw_data/An-1/participant_2/Illumina/ERR3624579_1.fastq.gz
@@ -40,7 +42,7 @@ singularity exec \
     meryl union-sum output Illumina.meryl read*.meryl
 
 #Illumina meryl file
-ILLMERYL=/data/users/mvisani/genome_assembly/evaluation/merqury/canu/Illumina.meryl
+ILLMERYL=/data/users/mvisani/genome_assembly/evaluation/merqury/canu_unpolished/Illumina.meryl
 
 
 # merqury assembly evaluation for canu
@@ -50,4 +52,4 @@ singularity exec \
     merqury.sh \
         $ILLMERYL \
         $CANU \
-        canu
+        canu_unpolished

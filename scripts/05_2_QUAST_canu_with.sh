@@ -22,9 +22,9 @@ quast.py \
     --output-dir $OUTDIR \
     -R $REFERENCE \
     -G $GENECOOR \
-    --threads 8 \
+    --threads $SLURM_CPUS_PER_TASK \
     --eukaryote \
-    --est-ref-size 135000000 \
+    --est-ref-size 130000000 \
     --no-sv \
     --labels canu_ref
 
